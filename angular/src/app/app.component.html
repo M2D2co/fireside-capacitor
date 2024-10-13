@@ -9,6 +9,7 @@
         <li *ngIf="(user | async)"><a [routerLink]="['/search']" routerLinkActive="router-link-active">Search</a></li>
         <li *ngIf="(user | async) === null"><a [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a></li>
         <li *ngIf="(user | async)"><a [routerLink]="['/logout']" routerLinkActive="router-link-active">Logout</a></li>
+        <li><a [routerLink]="['/debug']" routerLinkActive="router-link-active">Debug</a></li>
       </ul>
     </nav>
   </header>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "811594146603",
+    "firebase_url": "https://fireside-73c10.firebaseio.com",
+    "project_id": "fireside-73c10",
+    "storage_bucket": "fireside-73c10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811594146603:android:98412e7c2fa4417ddd5b6e",
+        "android_client_info": {
+          "package_name": "com.fireside.chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811594146603-itl1eakjjobev63su1pech5i2hnr3hb3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArnpHdXy6sKWkhHqACQwFGZpvnc_1y1D4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811594146603-itl1eakjjobev63su1pech5i2hnr3hb3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

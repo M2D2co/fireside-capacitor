@@ -9,7 +9,7 @@ import { InstallPromptComponent } from './install-prompt/install-prompt.componen
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInSuccessUrl: '/',
-  signInFlow: 'popup',
+  signInFlow: 'signInWithRedirect',
   signInOptions: [
     {
       provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,

@@ -86,6 +86,9 @@
               "buildTarget": "fireside-angular:build:development"
             }
           },
+          "options": {
+            "host": "10.10.10.153"
+          },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {

@@ -3,6 +3,7 @@
 @import './assets/scss/forms';
 @import '~firebaseui/dist/firebaseui.css';
 
+.firebase-emulator-warning { display: none; }
 
 * { box-sizing: border-box; }
 *:focus {

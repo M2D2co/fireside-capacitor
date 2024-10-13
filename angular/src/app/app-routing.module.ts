@@ -6,6 +6,7 @@ import { LoginComponent } from './core/login/login.component';
 import { LogoutComponent } from './core/logout/logout.component';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { SearchComponent } from './chat/search/search.component';
+import { DebugComponent } from './core/debug/debug.component';
 
 const authenticatedToHome = () => redirectLoggedInTo(['/']);
 const unauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: unauthorizedToLogin } },
   { path: 'login', component: LoginComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: authenticatedToHome } },
   { path: 'logout', component: LogoutComponent },
+  { path: 'debug', component: DebugComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

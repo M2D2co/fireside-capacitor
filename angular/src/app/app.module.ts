@@ -54,10 +54,10 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt()
   providers: [
     AngularFireAuthGuard,
     //  To emulate Functions
-    { provide: USE_EMULATOR_FIRESTORE, useValue: environment.useEmulator ? ['localhost', 8080] : undefined },
-    { provide: USE_EMULATOR_FUNCTIONS, useValue: environment.useEmulator ? ['localhost', 5001] : undefined },
-    { provide: USE_EMULATOR_STORAGE, useValue: environment.useEmulator ? ['localhost', 9199] : undefined },
-    { provide: USE_EMULATOR_AUTH, useValue: environment.useEmulator ? ['http://127.0.0.1:9099'] : undefined },
+    { provide: USE_EMULATOR_FIRESTORE, useValue: environment.useEmulator ? ['10.10.10.153', 8080] : undefined },
+    { provide: USE_EMULATOR_FUNCTIONS, useValue: environment.useEmulator ? ['10.10.10.153', 5001] : undefined },
+    { provide: USE_EMULATOR_STORAGE, useValue: environment.useEmulator ? ['10.10.10.153', 9199] : undefined },
+    { provide: USE_EMULATOR_AUTH, useValue: environment.useEmulator ? ['http://10.10.10.153:9099'] : undefined },
     //  PWA
     { provide: APP_INITIALIZER, useFactory: initializer, deps: [ PwaService ], multi: true }
   ],

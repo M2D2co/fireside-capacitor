@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --watch=false --browsers ChromeHeadless",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "android": "npx cap run android -l --external"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +25,10 @@
     "@angular/pwa": "^17.3.8",
     "@angular/router": "^17.3.12",
     "@angular/service-worker": "^17.3.12",
+    "@capacitor-firebase/crashlytics": "^6.1.0",
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/core": "^6.1.2",
+    "@capacitor/ios": "^6.1.2",
     "crypto-js": "^4.1.1",
     "firebase": "^10.13.0",
     "firebaseui": "^6.1.0",
@@ -42,6 +47,8 @@
     "@angular-eslint/template-parser": "17.5.2",
     "@angular/cli": "^17.3.8",
     "@angular/compiler-cli": "^17.3.12",
+    "@capacitor/cli": "^6.1.2",
+    "@ionic/cli": "^7.2.0",
     "@types/crypto-js": "^4.2.2",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
@@ -54,6 +61,7 @@
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "native-run": "^2.0.1",
     "typescript": "~5.2.2"
   },
   "optionalDependencies": {
