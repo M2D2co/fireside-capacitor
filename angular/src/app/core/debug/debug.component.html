@@ -4,9 +4,24 @@
 <main>
   <section>
     <h2>Crashlytics</h2>
+    <dl>
+      <dt>Did Crash On Previous Execution:</dt>
+      <dd><pre>{{ crashedOnPreviousExecution | json }}</pre></dd>
+    </dl>
+    <h3>Actions</h3>
+    <div class="actions">
+      <button type="button" mat-stroked-button color="primary" (click)="log()">Record Log</button>
+      <button type="button" mat-stroked-button color="primary" (click)="recordException()">Record Exception</button>
+      <button type="button" mat-stroked-button color="primary" id="crashMe" (click)="crash()">Crash Me</button>
+    </div>
+  </section>
 
-    <button type="button" (click)="crash()">Crash Me</button>
-
+  <section>
+    <h2>Test Performance</h2>
+    <div class="actions">
+      <button type="button" mat-stroked-button color="primary" (click)="startTrace()">Start Trace</button>
+      <button type="button" mat-stroked-button color="primary"(click)="stopTrace()">Stop Trace</button>
+    </div>
   </section>
 </main>
 

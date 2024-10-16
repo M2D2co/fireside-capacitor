@@ -6,6 +6,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { firebase, firebaseui, FirebaseUIModule } from 'firebaseui-angular';
 import { SharedModule } from '../shared/shared.module';
 import { InstallPromptComponent } from './install-prompt/install-prompt.component';
+import { DebugComponent } from './debug/debug.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInSuccessUrl: '/',
@@ -32,6 +33,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     LogoutComponent,
     PageNotFoundComponent,
     InstallPromptComponent,
+    DebugComponent,
   ],
   imports: [
     CommonModule,

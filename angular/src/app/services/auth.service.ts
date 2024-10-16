@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { User } from '@firebase/auth-types';
 import { EMPTY, Observable, of } from 'rxjs';
@@ -6,6 +6,7 @@ import md5 from 'crypto-js/md5';
 import { Profile } from '../models/profile.model';
 import { switchMap } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { FirebaseCrashlytics } from '@capacitor-firebase/crashlytics';
 
 const DEFAULT_USER = 'Anonymous';
 
@@ -13,9 +14,14 @@ const DEFAULT_USER = 'Anonymous';
   providedIn: 'root'
 })
 export class AuthService {
+
+  private auth = inject(AngularFireAuth)
+  private db = inject(AngularFirestore)
+
   public readonly profile: Observable<Profile> = this.auth.authState.pipe(
     switchMap(authUser => {
       if (authUser?.uid) {
+        FirebaseCrashlytics.setUserId({ userId: authUser?.uid || '' }).catch(err => {});
         return this.db.doc<Profile>(`users/${authUser.uid}`).valueChanges().pipe(
           switchMap(profile => {
             if (!profile) {
@@ -30,11 +36,6 @@ export class AuthService {
       return EMPTY
     }),
   );
-
-  constructor(
-    private auth: AngularFireAuth,
-    private db: AngularFirestore,
-  ) { }
 
   logout(): Promise<void> {
     return this.auth.signOut();

@@ -1,0 +1,19 @@
+.actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: max-content auto;
+  gap: .5ex 1ch;
+  align-items: center;
+  gap: .5ex 2ch;
+}
+
+dd, dt, pre {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
