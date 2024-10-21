@@ -1,4 +1,5 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { getMessaging, provideMessaging } from "@angular/fire/messaging";
 
 import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
@@ -36,8 +37,6 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt()
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    // TODO: FCM - Add messaging module
-    AngularFireMessagingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     CoreModule,
@@ -54,12 +53,12 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt()
   providers: [
     AngularFireAuthGuard,
     //  To emulate Functions
-    { provide: USE_EMULATOR_FIRESTORE, useValue: environment.useEmulator ? ['10.10.10.153', 8080] : undefined },
-    { provide: USE_EMULATOR_FUNCTIONS, useValue: environment.useEmulator ? ['10.10.10.153', 5001] : undefined },
-    { provide: USE_EMULATOR_STORAGE, useValue: environment.useEmulator ? ['10.10.10.153', 9199] : undefined },
-    { provide: USE_EMULATOR_AUTH, useValue: environment.useEmulator ? ['http://10.10.10.153:9099'] : undefined },
+    { provide: USE_EMULATOR_FIRESTORE, useValue: environment.useEmulator ? ['10.1.34.37', 8080] : undefined },
+    { provide: USE_EMULATOR_FUNCTIONS, useValue: environment.useEmulator ? ['10.1.34.37', 5001] : undefined },
+    { provide: USE_EMULATOR_STORAGE, useValue: environment.useEmulator ? ['10.1.34.37', 9199] : undefined },
+    { provide: USE_EMULATOR_AUTH, useValue: environment.useEmulator ? ['http://10.1.34.37:9099'] : undefined },
     //  PWA
-    { provide: APP_INITIALIZER, useFactory: initializer, deps: [ PwaService ], multi: true }
+    { provide: APP_INITIALIZER, useFactory: initializer, deps: [ PwaService ], multi: true },
   ],
   bootstrap: [AppComponent]
 })

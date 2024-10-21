@@ -1,15 +1,15 @@
 import { Component, OnDestroy } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { EMPTY, Observable, Subject } from 'rxjs';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { first, mergeMap, switchMap, takeUntil, tap } from 'rxjs/operators';
+
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AuthService } from '../../services/auth.service';
 import { Chat } from '../chat.model';
 import { ChatService } from '../services/chat.service';
-import { first, mergeMap, switchMap, takeUntil, tap } from 'rxjs/operators';
-import { Profile } from '../../models/profile.model';
-import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Profile } from '../../models/profile.model';
 
 @Component({
   selector: 'app-chat-room',
@@ -31,7 +31,6 @@ export class ChatRoomComponent implements OnDestroy {
     private authSvc: AuthService,
     private fb: UntypedFormBuilder,
     private chatService: ChatService,
-    private fcm: AngularFireMessaging,
     private db: AngularFirestore,
   ) {
     this.chatForm = this.fb.group({
@@ -44,10 +43,6 @@ export class ChatRoomComponent implements OnDestroy {
 
     this.authSvc.profile.pipe(takeUntil(this.destroyed$)).subscribe(user => {
       this.currentUser = user;
-      // TODO: FCM - load FCM if appropriate
-      if (user.notificationToken) {
-        this.fcm.getToken.pipe(first()).subscribe()
-      }
     });
   }
 
@@ -83,29 +78,6 @@ export class ChatRoomComponent implements OnDestroy {
 
   toggleInputImage() {
     this.inputImage = !this.inputImage;
-  }
-
-  enableNotification() {
-    // TODO: FCM - store the token
-    this.fcm.requestToken.pipe(
-      first(),
-      switchMap(token => this.db.doc(`/users/${this.currentUser?.uid}`).update({
-        ...this.currentUser,
-        notificationToken: token,
-      })),
-    ).subscribe()
-  }
-
-  disableNotification() {
-    // TODO: FCM - delete the token
-    this.fcm.getToken.pipe(
-      first(),
-      mergeMap(token => token ? this.fcm.deleteToken(token) : EMPTY),
-      switchMap(success => this.db.doc(`/users/${this.currentUser?.uid}`).update({
-        ...this.currentUser,
-        notificationToken: null,
-      })),
-    ).subscribe()
   }
 
   ngOnDestroy() {
